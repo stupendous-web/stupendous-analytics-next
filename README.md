@@ -3,7 +3,7 @@
 
 A simple NextJS component to collect visitor analytics.
 
-Note that you need a FREE account to access your analytics. You may create one on the [Stupendous Analytics](https://stupendousanalytics) homepage.
+Note that you need a FREE account to access your analytics. You may create one on the [Stupendous Analytics](https://stupendousanalytics.com) homepage.
 
 
 ## Installation
