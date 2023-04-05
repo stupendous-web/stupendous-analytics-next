@@ -5,35 +5,34 @@ const { v4: uuidv4 } = require("uuid");
 const axios = require("axios");
 
 module.exports = function StupendousAnalytics({ site }) {
-    react.useEffect(() => {
-        const hostname = document.location.hostname;
-        const path = document.location.pathname;
-        const host = extractDomain(document.referrer) || "Direct";
-        const referrer = document.referrer || "Direct";
-        const height = window.innerHeight;
-        const width = window.innerWidth;
-        const localTimestamp = new Date();
-        !hasCookie("stupendous_analytics") &&
-        setCookie("stupendous_analytics", uuidv4());
-        const session = getCookie("stupendous_analytics");
+  react.useEffect(() => {
+    const hostname = document.location.hostname;
+    const path = document.location.pathname;
+    const host = extractDomain(document.referrer) || "Direct";
+    const referrer = document.referrer || "Direct";
+    const height = window.innerHeight;
+    const width = window.innerWidth;
+    const localTimestamp = new Date();
+    !hasCookie("stupendous_analytics") &&
+      setCookie("stupendous_analytics", uuidv4());
+    const session = getCookie("stupendous_analytics");
 
-        const data = {
-            site: site,
-            path: path,
-            host: host,
-            referrer: referrer,
-            height: height,
-            width: width,
-            localTimestamp: localTimestamp,
-            session: session,
-        };
+    const data = {
+      site: site,
+      hostname: hostname,
+      path: path,
+      host: host,
+      referrer: referrer,
+      height: height,
+      width: width,
+      localTimestamp: localTimestamp,
+      session: session,
+    };
 
-        if (hostname === "localhost") {
-            axios.post("https://stupendousanalytics.com/api/dev-pageviews", data);
-        } else {
-            axios.post('https://stupendousanalytics.com/api/pageviews')
-        }
-    });
+    axios
+      .post("https://stupendousanalytics.com/api/pageviews", data)
+      .catch((error) => console.log("Stupendous Analytics Error:", error));
+  });
 
-    return null;
+  return null;
 };
