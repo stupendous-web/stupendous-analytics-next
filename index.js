@@ -28,8 +28,10 @@ module.exports = function StupendousAnalytics({ site }) {
             session: session,
         };
 
-        if (hostname !== "localhost") {
-            axios.post("https://stupendousanalytics.com/api/pageviews", data);
+        if (hostname === "localhost") {
+            axios.post("https://stupendousanalytics.com/api/dev-pageviews", data);
+        } else {
+            axios.post('https://stupendousanalytics.com/api/pageviews')
         }
     });
 
