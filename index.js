@@ -21,7 +21,7 @@ module.exports = function StupendousAnalytics({ site }) {
       site: site,
       hostname: hostname,
       path: path,
-      host: host,
+      host: host || "Direct",
       referrer: referrer,
       height: height,
       width: width,
